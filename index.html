@@ -114,7 +114,7 @@
       color:#0b1726;
     }
     .lead{
-      max-width:760px;
+      max-width:790px;
       color:#374151;
       margin:0;
       font-size:1.02rem;
@@ -455,7 +455,7 @@
     }
     table{
       width:100%;
-      min-width:850px;
+      min-width:880px;
       border-collapse:collapse;
       font-size:.9rem;
       background:#fff;
@@ -526,14 +526,14 @@
         <div class="eyebrow">Touzai Shimpou Vote Match</div>
         <h1>ミタニ市長選<br>ボートマッチ</h1>
         <p class="lead">
-          ゴミ焼却炉の再整備、X地区への移設、ハセ市への委託、子育て支援、企業誘致。
-          10の設問に答えると、あなたの考えに近い候補者を東西新報社が診断します。
+          ゴミ焼却炉の再整備、地域間の負担公平、広域連携、行政改革、子育て支援。
+          東西新報社のボートマッチでは、11の設問を通じて、あなたの考えに近い候補者を診断します。
         </p>
       </div>
       <div class="hero-meta">
         <span class="badge">主要争点：ゴミ焼却炉の設置場所</span>
         <span class="badge">回答時間：約2分</span>
-        <span class="badge">全10問</span>
+        <span class="badge">全11問</span>
       </div>
     </section>
 
@@ -542,7 +542,7 @@
         <section class="card">
           <h2>はじめに</h2>
           <p class="section-note">
-            ミタニ市では、Z地区のゴミ焼却炉の火災事故を受け、新しいゴミ焼却炉をどこに整備するかが大きな争点になっています。
+            ミタニ市では、Z地区のゴミ焼却炉の火災事故を受け、新しいゴミ焼却炉をどのように整備するかが大きな争点になっています。
             各候補者の政策と、あなたの考え方の一致度を確認できます。
           </p>
 
@@ -558,7 +558,7 @@
           <div class="progress-wrap" aria-live="polite">
             <div class="progress-text">
               <span>回答状況</span>
-              <span id="progressText">0 / 10</span>
+              <span id="progressText">0 / 11</span>
             </div>
             <div class="progress-line"><span id="progressBar"></span></div>
           </div>
@@ -566,7 +566,10 @@
 
         <section class="card">
           <h2>設問</h2>
-          <p class="section-note">それぞれの設問について、あなたの考えに最も近いものを選んでください。未回答の設問は計算から除外されます。</p>
+          <p class="section-note">
+            それぞれの設問について、あなたの考えに最も近いものを選んでください。
+            未回答の設問は計算から除外されます。
+          </p>
           <div id="qList"></div>
 
           <div class="cta">
@@ -595,7 +598,7 @@
             <div class="mini-cand">
               <div class="name">神崎 カオル</div>
               <span class="tag kz">Z地区で再整備</span>
-              <p>副市長経験をもとに、Z地区での再整備と防災複合施設の整備を掲げる。</p>
+              <p>副市長経験をもとに、Z地区での再整備と周辺整備を掲げる。</p>
             </div>
             <div class="mini-cand">
               <div class="name">風間 ショウ</div>
@@ -622,17 +625,17 @@
 
   <script>
     const QUESTIONS = [
-      { id:1, topic:"焼却炉", text:"新しいゴミ焼却炉は、引き続きZ地区で再整備すべきだと思いますか？" },
-      { id:2, topic:"焼却炉", text:"Z地区に負担が集中してきた状況を見直すため、新しいゴミ焼却炉はX地区に移設すべきだと思いますか？" },
-      { id:3, topic:"焼却炉", text:"ミタニ市には新しいゴミ焼却炉を建設せず、隣のハセ市に委託費を払ってゴミ焼却を依頼すべきだと思いますか？" },
-      { id:4, topic:"地域活性化", text:"ゴミ焼却炉の隣に、温水プールや環境学習施設を併設すべきだと思いますか？" },
-      { id:5, topic:"防災", text:"災害時に避難所としても活用できる防災複合施設を整備すべきだと思いますか？" },
-      { id:6, topic:"行政改革", text:"民間企業の経営ノウハウを活かして、市の無駄な支出を削減すべきだと思いますか？" },
-      { id:7, topic:"雇用", text:"Z地区のゴミ焼却炉の跡地に企業を誘致し、雇用を生み出すべきだと思いますか？" },
-      { id:8, topic:"負担公平", text:"市民と専門家による『NIMBY施設負担公平化検討委員会』を新設すべきだと思いますか？" },
-      { id:9, topic:"環境", text:"食品ロス削減などを進めて、『ゴミを減らすまちづくり』を推進すべきだと思いますか？" },
-      { id:10, topic:"子育て", text:"子育て世帯の負担軽減のため、学校給食と18歳までの医療費を無償化すべきだと思いますか？" },
-      { id:11, topic:"移住促進", text:"市の魅力を全国に発信し、子育て世帯の移住を促進すべきだと思いますか？" }
+      { id:1, topic:"焼却炉", text:"新しいゴミ焼却炉は、現在と同じZ地区で再整備するのが現実的だと思いますか？" },
+      { id:2, topic:"負担公平", text:"Z地区に公共施設の負担が集中してきたことを、市として是正すべきだと思いますか？" },
+      { id:3, topic:"焼却炉", text:"負担の公平性を考えると、新しいゴミ焼却炉をX地区に移すことも検討すべきだと思いますか？" },
+      { id:4, topic:"広域連携", text:"ミタニ市内に新しいゴミ焼却炉を建てず、隣のハセ市に処理を委託する方がよいと思いますか？" },
+      { id:5, topic:"地域活性化", text:"迷惑施設とされる施設であっても、周辺整備によって地域活性化につなげるべきだと思いますか？" },
+      { id:6, topic:"防災", text:"新しい公共施設は、平常時だけでなく災害時にも役立つよう整備すべきだと思いますか？" },
+      { id:7, topic:"行政改革", text:"行政運営には、民間企業の経営手法をもっと取り入れるべきだと思いますか？" },
+      { id:8, topic:"跡地利用", text:"公共施設の跡地は、企業誘致などによって雇用創出に活用すべきだと思いますか？" },
+      { id:9, topic:"環境", text:"焼却施設の整備だけでなく、食品ロス削減などゴミそのものを減らす政策を重視すべきだと思いますか？" },
+      { id:10, topic:"子育て", text:"市の財政負担が増えても、学校給食や18歳までの医療費の無償化を進めるべきだと思いますか？" },
+      { id:11, topic:"都市戦略", text:"市の知名度や魅力発信を通じて、子育て世帯の移住を促進すべきだと思いますか？" }
     ];
 
     const ANSWER_LABELS = ["賛成", "どちらともいえない", "反対"];
@@ -650,9 +653,9 @@
           1:"賛成",
           2:"反対",
           3:"反対",
-          4:"賛成",
+          4:"反対",
           5:"賛成",
-          6:"どちらともいえない",
+          6:"賛成",
           7:"どちらともいえない",
           8:"どちらともいえない",
           9:"どちらともいえない",
@@ -670,10 +673,10 @@
         answers:{
           1:"反対",
           2:"賛成",
-          3:"反対",
-          4:"どちらともいえない",
-          5:"どちらともいえない",
-          6:"賛成",
+          3:"賛成",
+          4:"反対",
+          5:"反対",
+          6:"どちらともいえない",
           7:"賛成",
           8:"賛成",
           9:"どちらともいえない",
@@ -690,10 +693,10 @@
         summary:"市内に新焼却炉を建設せず、ゴミ削減と子育て支援を重視する立場。",
         answers:{
           1:"反対",
-          2:"どちらともいえない",
-          3:"賛成",
-          4:"反対",
-          5:"どちらともいえない",
+          2:"賛成",
+          3:"どちらともいえない",
+          4:"賛成",
+          5:"反対",
           6:"どちらともいえない",
           7:"どちらともいえない",
           8:"どちらともいえない",
@@ -803,9 +806,10 @@
 
         const pct = denom ? Math.round(score / denom * 100) : 0;
         const matches = perQ.filter(x => x.score === 1).length;
+        const partials = perQ.filter(x => x.score === 0.5).length;
         const gaps = perQ.filter(x => x.score === 0).length;
 
-        return { ...c, pct, perQ, matches, gaps };
+        return { ...c, pct, perQ, matches, partials, gaps };
       }).sort((a,b) => b.pct - a.pct);
 
       return { perCandidate, answered };
@@ -819,9 +823,9 @@
     }
 
     function matchComment(c){
-      if(c.pct >= 85) return "多くの主要政策で考え方が重なっています。";
+      if(c.pct >= 85) return "多くの主要争点で考え方が重なっています。";
       if(c.pct >= 70) return "主要争点では近い部分が多い一方、一部に違いもあります。";
-      if(c.pct >= 50) return "一致する政策と異なる政策が分かれています。";
+      if(c.pct >= 50) return "一致する争点と異なる争点が分かれています。";
       return "政策全体では、考え方に違いが大きい結果です。";
     }
 
@@ -855,18 +859,18 @@
           <div class="bar"><span style="background:${c.color};width:${c.pct}%"></span></div>
           <div class="reason">
             <strong>${escapeHtml(c.position)}</strong><br>
-            完全一致：${c.matches}問／大きな違い：${c.gaps}問<br>
+            完全一致：${c.matches}問／一部一致：${c.partials}問／大きな違い：${c.gaps}問<br>
             ${matchComment(c)}
           </div>
         `;
         scoreCards.appendChild(card);
       });
 
-      renderDetails(perCandidate);
+      renderDetails();
       results.scrollIntoView({behavior:"smooth", block:"start"});
     }
 
-    function renderDetails(perCandidate){
+    function renderDetails(){
       let html = `
         <table>
           <thead>
