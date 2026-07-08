@@ -265,6 +265,17 @@
       font-weight:800;
       letter-spacing:.04em;
     }
+    .weight{
+      display:inline-block;
+      margin-left:8px;
+      color:#64748b;
+      background:#f1f5f9;
+      border:1px solid #e2e8f0;
+      border-radius:999px;
+      padding:1px 7px;
+      font-size:.72rem;
+      font-weight:900;
+    }
     .opts{
       margin-top:13px;
       display:grid;
@@ -455,7 +466,7 @@
     }
     table{
       width:100%;
-      min-width:880px;
+      min-width:980px;
       border-collapse:collapse;
       font-size:.9rem;
       background:#fff;
@@ -526,7 +537,7 @@
         <div class="eyebrow">Touzai Shimpou Vote Match</div>
         <h1>ミタニ市長選<br>ボートマッチ</h1>
         <p class="lead">
-          ゴミ焼却炉の再整備、地域間の負担公平、広域連携、行政改革、子育て支援。
+          ゴミ焼却炉の再整備、地域間の公平性、広域連携、行政改革、子育て支援。
           東西新報社のボートマッチでは、11の設問を通じて、あなたの考えに近い候補者を診断します。
         </p>
       </div>
@@ -534,6 +545,7 @@
         <span class="badge">主要争点：ゴミ焼却炉の設置場所</span>
         <span class="badge">回答時間：約2分</span>
         <span class="badge">全11問</span>
+        <span class="badge">重要争点は重みづけあり</span>
       </div>
     </section>
 
@@ -543,7 +555,7 @@
           <h2>はじめに</h2>
           <p class="section-note">
             ミタニ市では、Z地区のゴミ焼却炉の火災事故を受け、新しいゴミ焼却炉をどのように整備するかが大きな争点になっています。
-            各候補者の政策と、あなたの考え方の一致度を確認できます。
+            この診断では、焼却炉の設置場所に関する設問を特に重視しながら、各候補者の政策とあなたの考え方の一致度を計算します。
           </p>
 
           <div class="district-box">
@@ -598,19 +610,27 @@
             <div class="mini-cand">
               <div class="name">神崎 カオル</div>
               <span class="tag kz">Z地区で再整備</span>
-              <p>副市長経験をもとに、Z地区での再整備と周辺整備を掲げる。</p>
+              <p>副市長経験をもとに、Z地区での再整備と周辺施設の充実を掲げる。</p>
             </div>
             <div class="mini-cand">
               <div class="name">風間 ショウ</div>
               <span class="tag ks">X地区へ移設</span>
-              <p>Z地区への負担集中を見直し、民間の経営手法による行政改革を訴える。</p>
+              <p>Z地区への負担集中を見直し、行政改革と民間活力の導入を訴える。</p>
             </div>
             <div class="mini-cand">
               <div class="name">姫島 ルイ</div>
               <span class="tag hm">ハセ市へ委託</span>
-              <p>市内に新焼却炉を建設せず、ゴミ削減と子育て支援を前面に出す。</p>
+              <p>市内に新焼却炉を建設せず、子育て支援と移住促進を前面に出す。</p>
             </div>
           </div>
+        </section>
+
+        <section class="card">
+          <h2>重みづけ</h2>
+          <p class="section-note">
+            Q1〜Q3は焼却炉の設置場所に関わる最重要争点のため2倍、
+            Q9〜Q11は財源・子育て・インフラの優先順位に関わるため1.5倍として計算します。
+          </p>
         </section>
       </aside>
     </div>
@@ -625,21 +645,81 @@
 
   <script>
     const QUESTIONS = [
-      { id:1, topic:"焼却炉", text:"新しいゴミ焼却炉は、現在と同じZ地区で再整備するのが現実的だと思いますか？" },
-      { id:2, topic:"負担公平", text:"Z地区に公共施設の負担が集中してきたことを、市として是正すべきだと思いますか？" },
-      { id:3, topic:"焼却炉", text:"負担の公平性を考えると、新しいゴミ焼却炉をX地区に移すことも検討すべきだと思いますか？" },
-      { id:4, topic:"広域連携", text:"ミタニ市内に新しいゴミ焼却炉を建てず、隣のハセ市に処理を委託する方がよいと思いますか？" },
-      { id:5, topic:"地域活性化", text:"NIMBY施設とされる施設であっても、周辺整備によって地域活性化につなげるべきだと思いますか？" },
-      { id:6, topic:"防災", text:"新しい公共施設は、平常時だけでなく災害時にも役立つよう整備すべきだと思いますか？" },
-      { id:7, topic:"行政改革", text:"行政運営には、民間企業の経営手法をもっと取り入れるべきだと思いますか？" },
-      { id:8, topic:"跡地利用", text:"公共施設の跡地は、企業誘致などによって雇用創出に活用すべきだと思いますか？" },
-      { id:9, topic:"環境", text:"焼却施設の整備だけでなく、食品ロス削減などゴミそのものを減らす政策を重視すべきだと思いますか？" },
-      { id:10, topic:"子育て", text:"市の財政負担が増えても、学校給食や18歳までの医療費の無償化を進めるべきだと思いますか？" },
-      { id:11, topic:"都市戦略", text:"市の知名度や魅力発信を通じて、子育て世帯の移住を促進すべきだと思いますか？" }
+      {
+        id:1,
+        topic:"焼却炉",
+        weight:2,
+        text:"ゴミ焼却炉は、これまでどおりZ地区で建て替えるのが最も現実的だと思いますか？"
+      },
+      {
+        id:2,
+        topic:"地域間の公平性",
+        weight:2,
+        text:"Z地区に公共施設の負担が集中してきた以上、新しい焼却炉はX地区へ移すべきだと思いますか？"
+      },
+      {
+        id:3,
+        topic:"広域連携",
+        weight:2,
+        text:"ミタニ市だけで焼却炉を整備するより、隣のハセ市へ委託した方が効率的だと思いますか？"
+      },
+      {
+        id:4,
+        topic:"地域への還元",
+        weight:1,
+        text:"ゴミ焼却炉を建設する地域には、温水プールなど住民が利用できる施設を整備すべきだと思いますか？"
+      },
+      {
+        id:5,
+        topic:"防災",
+        weight:1,
+        text:"新しい公共施設は、災害時の避難所としても利用できるよう整備すべきだと思いますか？"
+      },
+      {
+        id:6,
+        topic:"NIMBY施設",
+        weight:1,
+        text:"ゴミ焼却炉などの迷惑施設が特定地域に集中しないよう、市が計画的に見直すべきだと思いますか？"
+      },
+      {
+        id:7,
+        topic:"行政改革",
+        weight:1,
+        text:"AIやデジタル技術を活用し、市役所の職員数を抑える改革を進めるべきだと思いますか？"
+      },
+      {
+        id:8,
+        topic:"跡地利用",
+        weight:1,
+        text:"公共施設の跡地は、企業誘致や起業支援に積極的に活用すべきだと思いますか？"
+      },
+      {
+        id:9,
+        topic:"医療費",
+        weight:1.5,
+        text:"子ども医療費を完全無料にするよりも、一部自己負担を導入して財政を安定させる方がよいと思いますか？"
+      },
+      {
+        id:10,
+        topic:"子育て支援",
+        weight:1.5,
+        text:"財政負担が増えても、学校給食・学童・ベビーシッターなどの子育て支援を拡充すべきだと思いますか？"
+      },
+      {
+        id:11,
+        topic:"財政の優先順位",
+        weight:1.5,
+        text:"道路・橋・下水道などのインフラ補修よりも、子育て政策を優先すべきだと思いますか？"
+      }
     ];
 
     const ANSWER_LABELS = ["賛成", "どちらともいえない", "反対"];
-    const MAP = { "賛成":1, "どちらともいえない":0, "反対":-1 };
+
+    const MAP = {
+      "賛成": 1,
+      "どちらともいえない": 0,
+      "反対": -1
+    };
 
     const CANDIDATES = [
       {
@@ -648,19 +728,19 @@
         short:"神崎",
         color:"linear-gradient(90deg,#60a5fa,#1d4ed8)",
         position:"Z地区で再整備",
-        summary:"行政経験を重視し、Z地区での再整備と周辺整備を進める立場。",
+        summary:"行政経験を重視し、Z地区での再整備、周辺施設の充実、防災機能の強化を進める立場です。",
         answers:{
           1:"賛成",
           2:"反対",
           3:"反対",
-          4:"反対",
+          4:"賛成",
           5:"賛成",
-          6:"賛成",
+          6:"反対",
           7:"どちらともいえない",
           8:"どちらともいえない",
-          9:"どちらともいえない",
-          10:"どちらともいえない",
-          11:"どちらともいえない"
+          9:"賛成",
+          10:"反対",
+          11:"反対"
         }
       },
       {
@@ -669,19 +749,19 @@
         short:"風間",
         color:"linear-gradient(90deg,#86efac,#15803d)",
         position:"X地区へ移設",
-        summary:"Z地区への負担集中の是正、行政改革、企業誘致を重視する立場。",
+        summary:"Z地区への負担集中の是正、NIMBY施設の見直し、行政改革、企業誘致を重視する立場です。",
         answers:{
           1:"反対",
           2:"賛成",
-          3:"賛成",
-          4:"反対",
-          5:"反対",
-          6:"どちらともいえない",
+          3:"反対",
+          4:"どちらともいえない",
+          5:"どちらともいえない",
+          6:"賛成",
           7:"賛成",
           8:"賛成",
           9:"どちらともいえない",
           10:"反対",
-          11:"どちらともいえない"
+          11:"反対"
         }
       },
       {
@@ -690,17 +770,17 @@
         short:"姫島",
         color:"linear-gradient(90deg,#fcd34d,#b7791f)",
         position:"ハセ市へ委託",
-        summary:"市内に新焼却炉を建設せず、ゴミ削減と子育て支援を重視する立場。",
+        summary:"市内に新焼却炉を建設せず、ハセ市への委託、子育て支援、移住促進を重視する立場です。",
         answers:{
           1:"反対",
-          2:"賛成",
-          3:"どちらともいえない",
-          4:"賛成",
+          2:"どちらともいえない",
+          3:"賛成",
+          4:"反対",
           5:"反対",
           6:"どちらともいえない",
-          7:"どちらともいえない",
-          8:"どちらともいえない",
-          9:"賛成",
+          7:"反対",
+          8:"反対",
+          9:"反対",
           10:"賛成",
           11:"賛成"
         }
@@ -718,8 +798,18 @@
 
     function escapeHtml(str){
       return String(str).replace(/[&<>"']/g, s => ({
-        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
       }[s]));
+    }
+
+    function weightLabel(weight){
+      if(weight === 2) return "重要度2倍";
+      if(weight === 1.5) return "重要度1.5倍";
+      return "通常";
     }
 
     function makeQuestion(q){
@@ -731,6 +821,7 @@
           <div>
             <h3>${escapeHtml(q.text)}</h3>
             <span class="topic">${escapeHtml(q.topic)}</span>
+            <span class="weight">${weightLabel(q.weight)}</span>
           </div>
         </div>
         <div class="opts">
@@ -761,56 +852,63 @@
       progressBar.style.width = `${pct}%`;
     }
 
-    function similarity(u, c){
-      const d = Math.abs(u - c);
-      return (2 - d) / 2;
+    function similarity(userValue, candidateValue){
+      const distance = Math.abs(userValue - candidateValue);
+      return (2 - distance) / 2;
     }
 
     function calcScores(){
-      const user = {};
       let answered = 0;
 
-      for (const q of QUESTIONS){
-        const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
-        if (!selected) continue;
-        user[q.id] = MAP[selected.value];
-        answered++;
-      }
-
-      const perCandidate = CANDIDATES.map(c => {
-        let score = 0;
-        let denom = 0;
+      const perCandidate = CANDIDATES.map(candidate => {
+        let weightedScore = 0;
+        let weightedDenom = 0;
         const perQ = [];
 
-        for (const q of QUESTIONS){
+        for(const q of QUESTIONS){
           const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
           const userLabel = selected ? selected.value : "未回答";
-          const candLabel = c.answers[q.id];
-          let s = null;
+          const candidateLabel = candidate.answers[q.id];
+          let rawScore = null;
+          let weightedPoint = null;
 
-          if (selected){
-            s = similarity(MAP[userLabel], MAP[candLabel]);
-            score += s;
-            denom++;
+          if(selected){
+            rawScore = similarity(MAP[userLabel], MAP[candidateLabel]);
+            weightedPoint = rawScore * q.weight;
+            weightedScore += weightedPoint;
+            weightedDenom += q.weight;
           }
 
           perQ.push({
             qid:q.id,
             text:q.text,
             topic:q.topic,
+            weight:q.weight,
             userLabel,
-            candLabel,
-            score:s
+            candidateLabel,
+            score:rawScore,
+            weightedPoint
           });
         }
 
-        const pct = denom ? Math.round(score / denom * 100) : 0;
+        const pct = weightedDenom ? Math.round(weightedScore / weightedDenom * 100) : 0;
         const matches = perQ.filter(x => x.score === 1).length;
         const partials = perQ.filter(x => x.score === 0.5).length;
         const gaps = perQ.filter(x => x.score === 0).length;
 
-        return { ...c, pct, perQ, matches, partials, gaps };
+        return {
+          ...candidate,
+          pct,
+          perQ,
+          matches,
+          partials,
+          gaps,
+          weightedScore,
+          weightedDenom
+        };
       }).sort((a,b) => b.pct - a.pct);
+
+      answered = QUESTIONS.filter(q => document.querySelector(`input[name="q${q.id}"]:checked`)).length;
 
       return { perCandidate, answered };
     }
@@ -822,10 +920,10 @@
       return `<span class="none">—</span>`;
     }
 
-    function matchComment(c){
-      if(c.pct >= 85) return "多くの主要争点で考え方が重なっています。";
-      if(c.pct >= 70) return "主要争点では近い部分が多い一方、一部に違いもあります。";
-      if(c.pct >= 50) return "一致する争点と異なる争点が分かれています。";
+    function matchComment(candidate){
+      if(candidate.pct >= 85) return "多くの重要争点で考え方が重なっています。";
+      if(candidate.pct >= 70) return "主要争点では近い部分が多い一方、一部に違いもあります。";
+      if(candidate.pct >= 50) return "一致する争点と異なる争点が分かれています。";
       return "政策全体では、考え方に違いが大きい結果です。";
     }
 
@@ -849,18 +947,18 @@
       `;
 
       scoreCards.innerHTML = "";
-      perCandidate.forEach((c, i) => {
+      perCandidate.forEach((candidate, index) => {
         const card = document.createElement("div");
         card.className = "res-card";
         card.innerHTML = `
-          <div class="rank">${i + 1}位</div>
-          <div class="res-name">${escapeHtml(c.name)}</div>
-          <div class="pct">${c.pct}%</div>
-          <div class="bar"><span style="background:${c.color};width:${c.pct}%"></span></div>
+          <div class="rank">${index + 1}位</div>
+          <div class="res-name">${escapeHtml(candidate.name)}</div>
+          <div class="pct">${candidate.pct}%</div>
+          <div class="bar"><span style="background:${candidate.color};width:${candidate.pct}%"></span></div>
           <div class="reason">
-            <strong>${escapeHtml(c.position)}</strong><br>
-            完全一致：${c.matches}問／一部一致：${c.partials}問／大きな違い：${c.gaps}問<br>
-            ${matchComment(c)}
+            <strong>${escapeHtml(candidate.position)}</strong><br>
+            完全一致：${candidate.matches}問／一部一致：${candidate.partials}問／大きな違い：${candidate.gaps}問<br>
+            ${matchComment(candidate)}
           </div>
         `;
         scoreCards.appendChild(card);
@@ -876,8 +974,9 @@
           <thead>
             <tr>
               <th>設問</th>
+              <th>重み</th>
               <th>あなた</th>
-              ${CANDIDATES.map(c => `<th>${escapeHtml(c.name)}</th>`).join("")}
+              ${CANDIDATES.map(candidate => `<th>${escapeHtml(candidate.name)}</th>`).join("")}
             </tr>
           </thead>
           <tbody>
@@ -886,11 +985,16 @@
       for(const q of QUESTIONS){
         const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
         const userLabel = selected ? selected.value : "未回答";
+
         html += `
           <tr>
-            <td><strong>Q${q.id}</strong> ${escapeHtml(q.text)}<br><span style="color:#8b95a5">${escapeHtml(q.topic)}</span></td>
+            <td>
+              <strong>Q${q.id}</strong> ${escapeHtml(q.text)}<br>
+              <span style="color:#8b95a5">${escapeHtml(q.topic)}</span>
+            </td>
+            <td>${q.weight}倍</td>
             <td>${icon(userLabel)} ${escapeHtml(userLabel)}</td>
-            ${CANDIDATES.map(c => `<td>${icon(c.answers[q.id])} ${escapeHtml(c.answers[q.id])}</td>`).join("")}
+            ${CANDIDATES.map(candidate => `<td>${icon(candidate.answers[q.id])} ${escapeHtml(candidate.answers[q.id])}</td>`).join("")}
           </tr>
         `;
       }
@@ -899,8 +1003,8 @@
       detailsTable.innerHTML = html;
     }
 
-    function toastMsg(msg){
-      toast.textContent = msg;
+    function toastMsg(message){
+      toast.textContent = message;
       toast.classList.add("show");
       setTimeout(() => toast.classList.remove("show"), 1800);
     }
@@ -908,7 +1012,7 @@
     document.getElementById("calcBtn").addEventListener("click", showResults);
 
     document.getElementById("clearBtn").addEventListener("click", () => {
-      document.querySelectorAll("input[type=radio]").forEach(i => i.checked = false);
+      document.querySelectorAll("input[type=radio]").forEach(input => input.checked = false);
       results.hidden = true;
       updateProgress();
       toastMsg("回答をリセットしました");
@@ -916,12 +1020,13 @@
 
     document.getElementById("shareBtn").addEventListener("click", async () => {
       const { perCandidate, answered } = calcScores();
+
       if(answered === 0){
         toastMsg("共有するには、まず診断してください");
         return;
       }
 
-      const lines = perCandidate.map((c,i) => `${i+1}位 ${c.name}：${c.pct}%`).join("\n");
+      const lines = perCandidate.map((candidate, index) => `${index + 1}位 ${candidate.name}：${candidate.pct}%`).join("\n");
       const text = `東西新報社｜ミタニ市長選ボートマッチ結果\n${lines}`;
 
       try{
@@ -931,7 +1036,7 @@
           await navigator.clipboard.writeText(text);
           toastMsg("結果をコピーしました");
         }
-      }catch(e){
+      }catch(error){
         toastMsg("共有をキャンセルしました");
       }
     });
